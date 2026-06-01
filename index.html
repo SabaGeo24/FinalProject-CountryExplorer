@@ -28,7 +28,7 @@
     <section>
       <form id="search-form" action="/submit" method="GET">
         <!-- add your inputs here (at least 3 different types) -->
-        <label for="region"> pick continent <label>
+        <label for="region"> pick continent </label>
         <select id="Regions" name="region" required>
            <option value="">-- Select a continent --</option>
            <option value="europe">Europe</option>
@@ -39,7 +39,7 @@
            <option value="australia">Australia</option>
        </select>
        <label for="Population_"> Minimum Population </label>
-       <input type="number" id="population" class="population" name="Population_" min="0" max="1500000000">
+       <input type="number" id="population" class="population" name="Population_" min="0" max="1500000000" required>
        <label for="ISLANDLOCKED"> IsLandlocked? </label>
        <input type="checkbox" id="checkbox" class="checkbox" name="ISLANDLOCKED">
        <button type="submit">Search</button>
