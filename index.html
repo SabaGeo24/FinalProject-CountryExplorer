@@ -13,7 +13,6 @@
       <span class="nav__logo">CountryExplorer</span>
       <div class="nav__links">
         <a href="About.html">AboutMe</a>
-        <a href="saved.html">Saved</a>
       </div>
       <div class="nav__actions">
         <span id="nav-user"></span>
@@ -28,6 +27,8 @@
     <section>
       <form id="search-form" action="/submit" method="GET">
         <!-- add your inputs here (at least 3 different types) -->
+        <label for="startingLetter">Starts With</label>
+        <input type="text" id="startingLetter" name="startingLetter" maxlength="1" pattern="[A-Za-z]" placeholder="A">
         <label for="region"> pick Continent </label>
         <select id="region" name="region" required>
            <option value="">-- Select a Continent --</option>
@@ -59,7 +60,7 @@
 
   <footer>
     <!-- footer content -->
-    <p> hello this is a footer </p>
+     <a href="saved.html">If you want to check your favorite saved countries, click me!</a>
   </footer>
 
   <script type="module" src="js/main.js"></script>
