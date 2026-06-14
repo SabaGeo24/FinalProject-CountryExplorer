@@ -1,48 +1,56 @@
 import { getSaved, setSaved } from './api.js';
-
-// redirect to login if no user session
-if (!localStorage.getItem('user')) {
-  window.location.href = 'login.html';
-}
-
-document.getElementById('nav-user').textContent = localStorage.getItem('user') || '';
-
-document.getElementById('logout-btn').addEventListener('click', () => {
-  localStorage.removeItem('user');
-  document.cookie = 'authorized=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
-  window.location.href = 'login.html';
-});
-
+ 
 function renderSaved() {
   const items = getSaved();
   const grid = document.getElementById('saved-grid');
   const empty = document.getElementById('saved-empty');
-
   grid.innerHTML = '';
-
+ 
   if (!items.length) {
     empty.hidden = false;
     return;
   }
-
+ 
   empty.hidden = true;
-
+ 
   items.forEach(item => {
     const card = document.createElement('article');
-    // build card content here
-
+    card.className = 'country-card';
+ 
+    const flagEl = document.createElement('div');
+    flagEl.className = 'country-card__flag';
+    flagEl.textContent = item.flag || '🏳';
+ 
+    const body = document.createElement('div');
+    body.className = 'country-card__body';
+ 
+    const nameEl = document.createElement('p');
+    nameEl.className = 'country-card__name';
+    nameEl.textContent = item.name;
+ 
+    const meta = document.createElement('p');
+    meta.className = 'country-card__meta';
+    meta.textContent = `Pop. ${item.population?.toLocaleString() || 'N/A'} · ${item.capital || 'N/A'}`;
+ 
     const removeBtn = document.createElement('button');
-    removeBtn.type = 'button';
+    removeBtn.className = 'country-card__save';
     removeBtn.textContent = 'Remove';
+ 
+    // closure: each button closes over its own item
     removeBtn.addEventListener('click', () => {
-      const updated = getSaved().filter(saved => saved.id !== item.id);
+      const updated = getSaved().filter(saved => saved.name !== item.name);
       setSaved(updated);
       renderSaved();
     });
-
-    card.appendChild(removeBtn);
+ 
+    body.appendChild(nameEl);
+    body.appendChild(meta);
+    body.appendChild(removeBtn);
+    card.appendChild(flagEl);
+    card.appendChild(body);
     grid.appendChild(card);
   });
 }
-
+ 
 renderSaved();
+
