@@ -1,6 +1,5 @@
 import { fetchData, getSaved, setSaved } from './api.js';
 
-
 // --- State ---
 let savedItems = getSaved();
 let searchResults = [];
@@ -45,11 +44,11 @@ function renderResults(items) {
   if (!items.length) { showError('No countries matched your filters.'); return; }
 
   items.forEach(item => {
-    const name = item.name?.common || 'Unknown';
-    const flag = item.flags?.emoji || '🏳';
+    const name = item.names?.common || 'Unknown';
+    const flag = item.flag?.emoji || '🏳';
     const pop = item.population?.toLocaleString() || 'N/A';
-    const capital = item.capital?.[0] || 'N/A';
-    const country = { name, flag, population: item.population, capital };
+    const capital = item.capitals?.[0]?.name || item.capitals?.[0] || 'N/A';
+    const country = { name, flag, population: item.population || 0, capital };
 
     const card = document.createElement('article');
     card.className = 'country-card';
@@ -73,7 +72,6 @@ function renderResults(items) {
     btn.className = 'country-card__save';
     btn.textContent = isSaved(name) ? 'Saved ✓' : 'Save';
 
-    // closure: handler closes over this iteration's country and btn
     btn.addEventListener('click', () => toggleSave(country, btn));
 
     body.appendChild(nameEl);
@@ -87,9 +85,9 @@ function renderResults(items) {
 
 function applyFilters(countries, { letter, population, landlocked }) {
   return countries.filter(c => {
-    const name = c.name?.common || '';
+    const name = c.names?.common || '';
     if (letter && !name.toLowerCase().startsWith(letter.toLowerCase())) return false;
-    if (population && c.population < Number(population)) return false;
+    if (population && (c.population || 0) < Number(population)) return false;
     if (landlocked && !c.landlocked) return false;
     return true;
   });
@@ -132,7 +130,7 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
 
   try {
     const data = await fetchData(region);
-    searchResults = data;
+    searchResults = data.objects;
     renderResults(applyFilters(searchResults, { letter, population, landlocked }));
   } catch (error) {
     showError('Failed to load countries. Please check your connection and try again.');
