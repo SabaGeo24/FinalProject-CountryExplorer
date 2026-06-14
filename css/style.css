@@ -1,35 +1,146 @@
-/* ===== custom properties ===== */
 :root {
-  /* colour palette and spacing variables */
+  --color-primary: #185FA5;
+  --color-accent: #1D9E75;
+  --color-bg: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-text: #2c2c2a;
+  --color-text-muted: #5f5e5a;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --radius: 8px;
 }
-
-/* ===== reset ===== */
-
-/* ===== header ===== */
-
-/* ===== nav — use Flexbox here ===== */
-
-/* ===== login page ===== */
-
+ 
+/* ===== base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+ 
+[hidden] { display: none !important; }
+ 
+/* ===== header / nav ===== */
+.header {
+  background: var(--color-primary);
+  padding: 0 var(--space-lg);
+  height: 52px;
+}
+ 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+ 
+.nav__logo { color: #fff; font-size: 18px; font-weight: 500; }
+ 
+.nav__link {
+  color: #cce0f5;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius);
+}
+ 
+.nav__link:hover { background: rgba(255,255,255,0.1); }
+ 
 /* ===== main ===== */
-
-/* ===== form ===== */
-
-/* ===== results grid — use CSS Grid here ===== */
-
-/* ===== card ===== */
-
-/* ===== saved grid — use CSS Grid here ===== */
-
-/* ===== loading & error states ===== */
-
+.main { padding: var(--space-md) var(--space-lg) var(--space-lg); }
+ 
+/* ===== search form ===== */
+.search-form {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+ 
+.search-form__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+}
+ 
+.search-form__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+ 
+.search-form__input,
+.search-form__select {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  width: 100%;
+}
+ 
+.search-form__input:focus,
+.search-form__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+ 
+.search-form__checkbox { accent-color: var(--color-accent); width: 16px; height: 16px; }
+ 
+.search-form__button {
+  height: 36px;
+  padding: 0 20px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  cursor: pointer;
+}
+ 
+.search-form__button:hover { opacity: 0.88; }
+ 
+/* ===== status ===== */
+.status-msg { text-align: center; padding: var(--space-md); color: var(--color-text-muted); font-size: 14px; }
+.status-msg--error { color: #a32d2d; }
+ 
+/* ===== results grid ===== */
+.results__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+ 
 /* ===== footer ===== */
-
+.footer {
+  text-align: center;
+  padding: var(--space-md);
+  border-top: 1px solid #ddd;
+  margin-top: var(--space-lg);
+}
+ 
+.footer__link { color: var(--color-primary); font-size: 14px; }
+ 
 /* ===== responsive ===== */
 @media (max-width: 600px) {
-  /* mobile */
+  .main { padding: var(--space-md); }
+  .search-form { padding: var(--space-md); }
+  .search-form__form { flex-direction: column; }
+  .search-form__button { width: 100%; }
+  .results__grid { grid-template-columns: 1fr 1fr; }
+}
+ 
+@media (min-width: 1024px) {
+  .main { max-width: 1100px; margin: 0 auto; }
+  .search-form__form { flex-wrap: nowrap; }
 }
 
-@media (min-width: 1024px) {
-  /* desktop */
-}

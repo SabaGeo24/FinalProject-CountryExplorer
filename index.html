@@ -7,60 +7,53 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <header>
-    <nav>
+  <header class="header">
+    <nav class="nav">
       <span class="nav__logo">CountryExplorer</span>
       <div class="nav__links">
-        <a href="About.html">AboutMe</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">Logout</button>
+        <a class="nav__link" href="About.html">AboutMe</a>
       </div>
     </nav>
   </header>
 
-  <main>
+  <main class="main">
+    <section class="search-form">
+      <form class="search-form__form" id="search-form" action="/submit" method="GET">
 
-    <!-- search / filter form -->
-    <section>
-      <form id="search-form" action="/submit" method="GET">
-        <!-- add your inputs here (at least 3 different types) -->
-        <label for="startingLetter">Starts With</label>
-        <input type="text" id="startingLetter" name="startingLetter" maxlength="1" pattern="[A-Za-z]" placeholder="A">
-        <label for="region"> pick Continent </label>
-        <select id="region" name="region" required>
-           <option value="">-- Select a Continent --</option>
-           <option value="europe">Europe</option>
-           <option value="asia">Asia</option>
-           <option value="africa">Africa</option>
-           <option value="south-america">South America</option>
-           <option value="north-america">North America</option>
-           <option value="australia">Australia</option>
-       </select>
-       <label for="Population"> Minimum Population </label>
-       <input type="number" id="Population" class="population" name="Population" min="0" max="1500000000"  placeholder="100000" required>
-       <label for="isLandlocked"> Is Landlocked? </label>
-       <input type="checkbox" id="isLandlocked" class="isLandlocked" name="isLandlocked">
-       <button type="submit">Search</button>
+        <label class="search-form__label" for="startingLetter">Starts With</label>
+        <input class="search-form__input" type="text" id="startingLetter" name="startingLetter" maxlength="1" pattern="[A-Za-z]" placeholder="A">
+
+        <label class="search-form__label" for="region">Pick Continent</label>
+        <select class="search-form__select" id="region" name="region" required>
+          <option value="">-- Select a Continent --</option>
+          <option value="europe">Europe</option>
+          <option value="asia">Asia</option>
+          <option value="africa">Africa</option>
+          <option value="south-america">South America</option>
+          <option value="north-america">North America</option>
+          <option value="australia">Australia</option>
+        </select>
+
+        <label class="search-form__label" for="population">Minimum Population</label>
+        <input class="search-form__input search-form__input--population" type="number" id="population" name="population" min="0" max="1500000000" placeholder="100000" required>
+
+        <label class="search-form__label" for="isLandlocked">Is Landlocked?</label>
+        <input class="search-form__checkbox" type="checkbox" id="isLandlocked" name="isLandlocked">
+
+        <button class="search-form__button" type="submit">Search</button>
       </form>
     </section>
 
-    <!-- loading and error states -->
-    <p id="loading-msg" hidden>Loading…</p>
-    <p id="error-msg" hidden></p>
+    <p class="status-msg status-msg--loading" id="loading-msg" hidden>Loading…</p>
+    <p class="status-msg status-msg--error" id="error-msg" hidden></p>
 
-    <!-- dynamically generated cards land here -->
-    <section>
-      <div id="results-grid"></div>
+    <section class="results">
+      <div class="results__grid" id="results-grid"></div>
     </section>
-
   </main>
 
-  <footer>
-    <!-- footer content -->
-     <a href="saved.html">If you want to check your favorite saved countries, click me!</a>
+  <footer class="footer">
+    <a class="footer__link" href="saved.html">If you want to check your favorite saved countries, click me!</a>
   </footer>
 
   <script type="module" src="js/main.js"></script>
