@@ -6,9 +6,15 @@
 }
  
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: system-ui, sans-serif; background: #f4f4f2; color: var(--color-text); }
+body {
+   font-family: system-ui, 
+   sans-serif; background: #f4f4f2; 
+   color: var(--color-text);
+   }
  
-.main { padding: 3rem 2rem; }
+.main { 
+  padding: 3rem 2rem; 
+}
  
 .about {
   max-width: 800px;
@@ -23,9 +29,21 @@ body { font-family: system-ui, sans-serif; background: #f4f4f2; color: var(--col
   line-height: 1.6;
 }
  
-.about__image {
-  width: 100%;
+.about__images {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.about__worldimage {
+  width: 70%;
   border-radius: 12px;
+}
+
+.about__countryball {
+  width: 30%;
+  flex-shrink: 0;
+
 }
  
 .footer { text-align: center; padding: var(--space); border-top: 1px solid #ddd; margin-top: 2rem; }
