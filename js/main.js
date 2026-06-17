@@ -44,18 +44,29 @@ function renderResults(items) {
   if (!items.length) { showError('No countries matched your filters.'); return; }
 
   items.forEach(item => {
-    const name = item.names?.common || 'Unknown';
-    const flag = item.flag?.emoji || '🏳';
-    const pop = item.population?.toLocaleString() || 'N/A';
-    const capital = item.capitals?.[0]?.name || item.capitals?.[0] || 'N/A';
-    const country = { name, flag, population: item.population || 0, capital };
+     const name = item.names?.common || 'Unknown';
+     const code = item.codes?.alpha_2?.toLowerCase();
+     const pop = item.population?.toLocaleString() || 'N/A';
+     const capital = item.capitals?.[0]?.name || item.capitals?.[0] || 'N/A';
+     const country = { name, code, population: item.population || 0, capital };
 
-    const card = document.createElement('article');
-    card.className = 'country-card';
+     const card = document.createElement('article');
+     card.className = 'country-card';
 
-    const flagEl = document.createElement('div');
-    flagEl.className = 'country-card__flag';
-    flagEl.textContent = flag;
+     const flagEl = document.createElement('div');
+     flagEl.className = 'country-card__flag';
+
+     if (code) {
+      const flagImg = document.createElement('img');
+      flagImg.src = `https://flagcdn.com/24x18/${code}.png`;
+      flagImg.alt = `${name} flag`;
+      flagImg.onerror = () => { flagImg.replaceWith(document.createTextNode('🏳')); };
+      flagEl.appendChild(flagImg);
+     } 
+     else 
+     {
+        flagEl.textContent = '🏳';
+     }
 
     const body = document.createElement('div');
     body.className = 'country-card__body';
