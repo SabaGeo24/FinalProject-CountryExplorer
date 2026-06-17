@@ -19,7 +19,18 @@ function renderSaved() {
  
     const flagEl = document.createElement('div');
     flagEl.className = 'country-card__flag';
-    flagEl.textContent = item.flag || '🏳';
+
+    if (item.code) {
+      const flagImg = document.createElement('img');
+      flagImg.src = `https://flagcdn.com/24x18/${item.code}.png`;
+      flagImg.alt = `${item.name} flag`;
+      flagImg.onerror = () => { flagImg.replaceWith(document.createTextNode('🏳')); };
+      flagEl.appendChild(flagImg);
+    } 
+    else 
+    {
+      flagEl.textContent = '🏳';
+    }
  
     const body = document.createElement('div');
     body.className = 'country-card__body';
