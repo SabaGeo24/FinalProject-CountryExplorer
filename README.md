@@ -25,3 +25,5 @@ your-project/
 ```
 
 See [project requirements](https://github.com/cu-cst-web1-2026-eng/materials/blob/main/lecture_13/final_project/README.md) for the full technical checklist and grading breakdown.
+
+Netlify: rococo-centaur-4e44e5.netlify.app
