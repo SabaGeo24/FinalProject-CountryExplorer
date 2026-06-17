@@ -24,7 +24,7 @@ color: var(--color-text);
 	border-bottom: 1px solid #ddd; 
 }
 .header__title { font-size: 26px;
-font-weight: 1000;
+font-weight: 700;
 margin-bottom: 4px; 
 color: white; 
 }
